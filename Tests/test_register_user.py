@@ -1,6 +1,9 @@
+from telnetlib import EC
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 @pytest.fixture(scope="module")
@@ -47,7 +50,7 @@ def test_register_user(setup_method):
     driver.find_element(By.XPATH, "//input[@id='city']").send_keys("LA")
     driver.find_element(By.XPATH, "//input[@id='zipcode']").send_keys("1001")
     driver.find_element(By.XPATH, "//input[@id='mobile_number']").send_keys("1234567890")
-    driver.find_element(By.XPATH, "//button[normalize-space()='Create Account']").click()
+    driver.find_element(By.XPATH, "//button[contains(text(),'Create Account')]").click()
     assert driver.find_element(By.XPATH, "//b[normalize-space()='Account Created!']").is_displayed()
     driver.find_element(By.XPATH, "//a[@class='btn btn-primary']").click()
     assert driver.find_element(By.XPATH, "//li[10]//a[1]").is_displayed()

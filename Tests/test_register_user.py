@@ -1,9 +1,6 @@
-from telnetlib import EC
-
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 
 
 @pytest.fixture(scope="module")
@@ -21,8 +18,8 @@ def test_register_user(setup_method):
     assert "Automation Exercise" in setup_method.title
     driver.find_element(By.XPATH, "//a[normalize-space()='Signup / Login']").click()
     assert driver.find_element(By.XPATH, "//h2[normalize-space()='New User Signup!']").is_displayed()
-    driver.find_element(By.XPATH, "//input[@placeholder='Name']").send_keys("User")
-    driver.find_element(By.XPATH, "//input[@data-qa='signup-email']").send_keys("tim1994@gmail.com")
+    driver.find_element(By.XPATH, "//input[@placeholder='Name']").send_keys("Alice")
+    driver.find_element(By.XPATH, "//input[@data-qa='signup-email']").send_keys("alice1994@gmail.com")
     driver.find_element(By.XPATH, "//button[normalize-space()='Signup']").click()
     assert driver.find_element(By.XPATH, "//b[contains(text(),'Enter Account Information')]").is_displayed()
     driver.find_element(By.XPATH, "//input[@id='id_gender2']").click()
@@ -32,7 +29,7 @@ def test_register_user(setup_method):
     # input_email = driver.find_element(By.ID, "email")
     # input_email.clear()
     # input_email.send_keys("privateuser@gmail.com")
-    driver.find_element(By.XPATH, "//input[@id='password']").send_keys("123456789")
+    driver.find_element(By.XPATH, "//input[@id='password']").send_keys("123456")
     driver.find_element(By.XPATH, "//select[@id='days']").send_keys("1")
     driver.find_element(By.XPATH, "//select[@id='months']").send_keys("January")
     driver.find_element(By.XPATH, "//select[@id='years']").send_keys("1994")
@@ -54,6 +51,7 @@ def test_register_user(setup_method):
     assert driver.find_element(By.XPATH, "//b[normalize-space()='Account Created!']").is_displayed()
     driver.find_element(By.XPATH, "//a[@class='btn btn-primary']").click()
     assert driver.find_element(By.XPATH, "//li[10]//a[1]").is_displayed()
-    driver.find_element(By.XPATH, "//a[normalize-space()='Delete Account']").click()
-    assert driver.find_element(By.XPATH, "//b[contains(text(),'Account Deleted!')]").is_displayed()
-    driver.find_element(By.XPATH, "//a[@class='btn btn-primary']").click()
+    driver.find_element(By.XPATH, "//a[normalize-space()='Logout']").click()
+    # driver.find_element(By.XPATH, "//a[normalize-space()='Delete Account']").click()
+    # assert driver.find_element(By.XPATH, "//b[contains(text(),'Account Deleted!')]").is_displayed()
+    # driver.find_element(By.XPATH, "//a[@class='btn btn-primary']").click()

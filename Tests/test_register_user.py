@@ -28,6 +28,7 @@ def test_register_user(setup_method):
 
     submit_button = driver.find_element(By.XPATH, "//button[text()='Signup']")
     submit_button.click()
+    driver.find_element(By.XPATH, "//input[@id='id_gender2']").click()
 
     account_name_field = driver.find_element(By.NAME, 'name')
     account_email_field = driver.find_element(By.ID, "email")
